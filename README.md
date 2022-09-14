@@ -51,7 +51,8 @@ This is probably the most time consuming part of the process, depending on how o
 You just have to guess and click on a video until you get a video with the right published date.\
 Then, you have to jump around the video until you find the base you are looking for.\
 I prefer on hovering my mouse cursor over the video progress bar to see the bases quicker.\
-Be aware that the base results can be rotated 90 degrees (`"rotate90"`), 180 degrees (`"rotate180"`), 270 degrees (`"rotate270"`), a vertical reflection (`"vertical_reflection"`), or a horizontal reflection (`"horizontal_reflection"`) from your original scanned screenshot (`"original"`) based on the `"transformation"` key in the JSON response.
+Be aware that the base results can be rotated 90 degrees (`"rotate90"`), 180 degrees (`"rotate180"`), 270 degrees (`"rotate270"`), a vertical reflection (`"vertical_reflection"`), or a horizontal reflection (`"horizontal_reflection"`) from your original scanned screenshot (`"original"`) based on the `"transformation"` key in the JSON response.\
+There are also some cases where the actual video with the scanned base is one day older than the date found in `"videocapture_YYYYMMDD_11111_222222.jpg"` (Ex. The date said 20220623 in the jpg, but the actual video's date with the scanned base was June 22, 2022 (20220622).
 
 ![Base Found](./images/found.png "Burntbase Base Found")
 
