@@ -1,14 +1,31 @@
-# Clash of Clans Burntbase Cooldown Bypass Guide
+# Clash of Clans Burntbase Cooldown Bypass Guide + Script
 
-This is a Clash of Clans guide on how to view Burntbase videos without waiting for the 12 hour cooldown.
+This is a Clash of Clans guide and script on how to view Burntbase videos without waiting for the 12 hour cooldown.
 
 ## Requirements
 
 - An API client. I am using [Insomnia](https://insomnia.rest/download) for this guide.
 - A browser with developer tools. I am using Google Chrome for this guide.
+- Python 3.8+ (If using `burntbase.py`)
 
+## Python Requirements
+
+```
+pip install -r requirements.txt
+```
+## Usage
+
+Edit scan_number_and_access_token.py with your [scan number](#upload-base-image-to-scan) and [access token](#get-your-access-token).
+
+Run with:
+```
+python3 burntbase.py
+```
+
+Then view `Burntbase Scan Results.csv` containing all the base results.
 
 # Get your Access Token
+**NOTE**: Access token expires after one day.
 
 - Go to https://www.burntbase.com/login
 - Open developer tools and go to the Network tab
@@ -28,13 +45,16 @@ This is a Clash of Clans guide on how to view Burntbase videos without waiting f
 
 # Use an API Client to Get JSON Response
 
+**NOTE**: If you prefer to use the `burntbase.py` script, read the [usage](#usage) of the script and skip to [here](#searching-through-youtube-channels-script).
+
 - Enter https[]()://app.burntbase.com/api/auth/scans/###### (Replace ###### with your [scan number](#upload-base-image-to-scan)) in a GET Request
 - In the header tab, enter `accesstoken` in header and your [accesstoken](#get-your-access-token) in value
 - Send the request
 - Scroll down the JSON response until you see the `"match_results"` key
 ![JSON Response](./images/results.png "Burntbase JSON Response")
 
-# Finding the YouTube Videos with the Base
+## Finding the YouTube Videos with the Base
+
 Now that we have all the information we need, it's time to look for the base on YouTube.\
 The keys we are interested in are the `"IMG_NAME_FILE"` (in red) and the `"yt_channel_id"` (in cyan) keys.
 
@@ -46,7 +66,7 @@ For example, in the above image, the first result's video was published on Augus
 The values under the `"yt_channel_id"` will be used to go to the YouTube channel that published the video by going to ``https://www.youtube.com/channel/(value for the "yt_channel_id" key)``.\
 For example, in the above image, the first result's YouTube channel will be `https://www.youtube.com/channel/UCsDy8uBJQpdHrLJ-ayCZ2HA`.
 
-## Searching Through the YouTube Channel
+# Searching Through the YouTube Channel
 This is probably the most time consuming part of the process, depending on how old the video is, how long the video is, if the YouTube channel frequently uploads videos, or uploads many videos in one day.\
 You just have to guess and click on a video until you get a video with the right published date.\
 Then, you have to jump around the video until you find the base you are looking for.\
@@ -56,5 +76,7 @@ There are also some cases where the actual video with the scanned base is one da
 
 ![Base Found](./images/found.png "Burntbase Base Found")
 
+# Searching Through YouTube Channels (Script)
 
+Once you [run](#usage) the script, open the `Burntbase Scan Results.csv` file, and you can go through each row and find the YouTube video containing the scanned base using the `Date` column, `Image` column (if you want to see what the base looks like in the video), `Tranformation` column (to know if the base in the video is rotated or a reflection of your scanned base), and the `YouTube Channel Link` column.
 # Bingo! We found the base from the video that looks exactly like the blurred image that is still in a 12 hour cooldown on Burntbase in less than 5 minutes!
