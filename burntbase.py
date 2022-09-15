@@ -2,8 +2,18 @@ import requests, json, scan_number_and_access_token
 from datetime import datetime
 import pandas as pd
 
-# Returns a dictionary of all results and their attributes
 def results_dict(results_items):
+    """
+    Parse scanned base results to a dictionary
+
+    Parameters
+    ----------
+    @results_items [list]: List of matches from the scanned base results
+
+    Returns
+    -------
+    [dictionary] all results from results_items and their attributes
+    """
     r_date = [datetime.fromtimestamp(results_items[item]['date']).strftime('%B %d, %Y') for item in range(len(results_items))]
     r_img_name = [(results_items[item]['IMG_NAME']).replace('\\','') for item in range(len(results_items))]
     r_burn_factor = [f"{int(results_items[item]['burn_factor']*100)}%" for item in range(len(results_items))]
