@@ -40,26 +40,30 @@ json_r = response.json()
 
 #json_r = json.load(open('./response.json'))
 
-results = json_r['results']
-# match_results are results where burn factor > 80%
-match_results = results['match_results']
-# no_match_results are results where burn factor < 80%
-no_match_results =  results['no_match_results']
+def main():
+    results = json_r['results']
+    # match_results are results where burn factor > 80%
+    match_results = results['match_results']
+    # no_match_results are results where burn factor < 80%
+    no_match_results =  results['no_match_results']
 
-match_df = pd.DataFrame(results_dict(match_results))
-no_match_df = pd.DataFrame(results_dict(no_match_results))
+    match_df = pd.DataFrame(results_dict(match_results))
+    no_match_df = pd.DataFrame(results_dict(no_match_results))
 
-# Combine all results into one dataframe
-all_matches_df = pd.concat([match_df, no_match_df],axis=0)
-#print(all_matches_df)
+    # Combine all results into one dataframe
+    all_matches_df = pd.concat([match_df, no_match_df],axis=0)
+    #print(all_matches_df)
 
-# Change values under Transformation column to make it easier to understand
-all_matches_df.loc[all_matches_df['Transformation'] == 'original', 'Transformation'] = 'Original'
-all_matches_df.loc[all_matches_df['Transformation'] == 'rotate90', 'Transformation'] = '90° Rotation'
-all_matches_df.loc[all_matches_df['Transformation'] == 'rotate180', 'Transformation'] = '180° Rotation'
-all_matches_df.loc[all_matches_df['Transformation'] == 'rotate270', 'Transformation'] = '270° Rotation'
-all_matches_df.loc[all_matches_df['Transformation'] == 'vertical_reflection', 'Transformation'] = 'Vertical Reflection'
-all_matches_df.loc[all_matches_df['Transformation'] == 'horizontal_reflection', 'Transformation'] = 'Horizontal Reflection'
+    # Change values under Transformation column to make it easier to understand
+    all_matches_df.loc[all_matches_df['Transformation'] == 'original', 'Transformation'] = 'Original'
+    all_matches_df.loc[all_matches_df['Transformation'] == 'rotate90', 'Transformation'] = '90° Rotation'
+    all_matches_df.loc[all_matches_df['Transformation'] == 'rotate180', 'Transformation'] = '180° Rotation'
+    all_matches_df.loc[all_matches_df['Transformation'] == 'rotate270', 'Transformation'] = '270° Rotation'
+    all_matches_df.loc[all_matches_df['Transformation'] == 'vertical_reflection', 'Transformation'] = 'Vertical Reflection'
+    all_matches_df.loc[all_matches_df['Transformation'] == 'horizontal_reflection', 'Transformation'] = 'Horizontal Reflection'
 
-# Save results to a CSV file
-all_matches_df.to_csv(f'./Burntbase Scan Results.csv', index=False)
+    # Save results to a CSV file
+    all_matches_df.to_csv(f'./Burntbase Scan Results.csv', index=False)
+
+if __name__ == '__main__':
+    main()
