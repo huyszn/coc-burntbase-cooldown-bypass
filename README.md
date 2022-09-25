@@ -10,15 +10,19 @@ This is a Clash of Clans guide and script on how to view Burntbase videos withou
 
 ## Python Requirements
 
-```
+Clone this repository, cd into it, and install dependencies:
+```sh
+git clone https://github.com/huyszn/coc-burntbase-cooldown-bypass.git
+cd coc-burntbase-cooldown-bypass
 pip install -r requirements.txt
 ```
+
 ## Usage
 
-Edit scan_number_and_access_token.py with your [scan number](#upload-base-image-to-scan) and [access token](#get-your-access-token).
+Edit `scan_number_and_access_token.py` with your [scan number](#upload-base-image-to-scan) and [access token](#get-your-access-token).
 
 Run with:
-```
+```sh
 python3 burntbase.py
 ```
 
